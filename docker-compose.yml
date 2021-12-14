@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_DB=books
+      - POSTGRES_PASSWORD=asdqwe123
+      - POSTGRES_USER=postgres
+    volumes:
+      - postgres:/var/lib/postgres/data
+    ports:
+      - 5432:5432
+  api:
+    image: books-api
+    build:
+      context: .
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=books
+      - POSTGRES_PASSWORD=asdqwe123
+      - POSTGRES_USER=postgres
+    volumes:
+      - ./:/app
+    ports:
+      - 3000:3000
+    command: bundle exec puma
+    depends_on:
+      - postgres
+volumes:
+  postgres:
