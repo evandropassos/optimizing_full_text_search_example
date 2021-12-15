@@ -22,6 +22,9 @@ gem 'puma', '~> 5.0'
 # This gem is a port of Perl's Data::Faker library that generates fake data
 gem 'faker'
 
+# Builds named scopes that take advantage of PostgreSQL's full text search.
+gem 'pg_search'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
